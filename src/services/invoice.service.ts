@@ -83,7 +83,7 @@ export class InvoiceService {
     let stornoInvoiceNumber: number;
     do {
       stornoInvoiceNumber = this.generateRandomInvoiceNumber();
-    } while (await this.isInvoiceNumberExists(stornoInvoiceNumber));
+    } while (await this.ifInvoiceNumberExists(stornoInvoiceNumber));
     return stornoInvoiceNumber;
   }
   
@@ -92,7 +92,7 @@ export class InvoiceService {
     return Math.floor(Math.random() * 1000000) + 1;
   }
   
-  private async isInvoiceNumberExists(invoiceNumber: number): Promise<boolean> {
+  private async ifInvoiceNumberExists(invoiceNumber: number): Promise<boolean> {
     // Check if the invoice number exists in the database
     const existingInvoice = await this.invoiceRepository.findOne({ where: { number: invoiceNumber } });
     return !!existingInvoice;
