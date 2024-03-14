@@ -139,3 +139,16 @@ mutation {
   }
 }
 - generateStornoInvoice(id: Int!): Generates a storno invoice from an existing standardized invoice.
+mutation {
+  generateStornoInvoice(id: 17) {
+    id
+    number
+    description
+    date
+    paymentTerm
+    currency
+    amount
+    isPaid
+    isStorno
+  }
+}
