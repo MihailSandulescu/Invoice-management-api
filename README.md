@@ -15,11 +15,11 @@ Before you begin, ensure you have the following installed on your machine:
 ## Installation
 Clone the repository:
 - git clone https://github.com/MihailSandulescu/invoice-management-api.git
-Navigate to the project directory:
-- cd invoice-management-api
-Install dependencies:
-- npm install
-Set up environment variables:
+- Navigate to the project directory:
+  cd invoice-management-api
+- Install dependencies:
+  npm install
+- Set up environment variables:
 Create a .env file in the root directory and add the following environment variables:
 DB_TYPE=postgres
 DB_HOST=localhost
