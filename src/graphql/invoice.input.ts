@@ -10,13 +10,13 @@ export class InvoiceInput {
   @Field()
   description: string;
 
-  @Field()
+  @Field({ nullable: true })
   date: Date;
 
   @Field()
   paymentTerm: string;
 
-  @Field()
+  @Field({ nullable: true })
   currency: string;
 
   @Field()

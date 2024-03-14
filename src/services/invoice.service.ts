@@ -62,12 +62,40 @@ export class InvoiceService {
     if (!invoice) {
       throw new Error(`Invoice with ID ${id} not found.`);
     }
+  
+    const stornoInvoiceNumber = await this.generateUniqueStornoInvoiceNumber();
+  
     const stornoInvoice = this.invoiceRepository.create({
-      ...invoice,
-      id: undefined,
+      description: `Storno of invoice ${invoice.number}`,
+      date: new Date(), // Set the date to current date or any appropriate date for storno invoice
+      paymentTerm: invoice.paymentTerm,
+      currency: invoice.currency,
+      amount: -invoice.amount, // Set the amount as negative to indicate storno
+      number: stornoInvoiceNumber,
+      isPaid: false, // By default, storno invoices are not paid
       isStorno: true,
     });
+  
     return this.invoiceRepository.save(stornoInvoice);
+  }
+
+  private async generateUniqueStornoInvoiceNumber(): Promise<number> {
+    let stornoInvoiceNumber: number;
+    do {
+      stornoInvoiceNumber = this.generateRandomInvoiceNumber();
+    } while (await this.isInvoiceNumberExists(stornoInvoiceNumber));
+    return stornoInvoiceNumber;
+  }
+  
+  private generateRandomInvoiceNumber(): number {
+    // Generate a random invoice number based on your requirements
+    return Math.floor(Math.random() * 1000000) + 1;
+  }
+  
+  private async isInvoiceNumberExists(invoiceNumber: number): Promise<boolean> {
+    // Check if the invoice number exists in the database
+    const existingInvoice = await this.invoiceRepository.findOne({ where: { number: invoiceNumber } });
+    return !!existingInvoice;
   }
 
   async findByNumber(number: number): Promise<Invoice> {

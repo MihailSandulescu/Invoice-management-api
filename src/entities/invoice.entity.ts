@@ -44,12 +44,12 @@ export class Invoice {
 
   // Many invoices can be associated with one customer
   @ManyToOne(() => Customer, customer => customer.invoices)
-  @Field(() => Customer) // Specify the return type for customer field
+  @Field(() => Customer, { nullable: true }) // Specify the return type for customer field
   customer: Customer;
 
   // Many invoices can be associated with one project
   @ManyToOne(() => Project, project => project.invoices)
-  @Field(() => Project) // Specify the return type for project field
+  @Field(() => Project, { nullable: true }) // Specify the return type for project field
   project: Project;
 
   constructor(data: Partial<Invoice> = {}) {
