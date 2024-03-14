@@ -15,11 +15,11 @@ Before you begin, ensure you have the following installed on your machine:
 ## Installation
 Clone the repository:
 - git clone https://github.com/MihailSandulescu/invoice-management-api.git
-Navigate to the project directory:
-- cd invoice-management-api
-Install dependencies:
-- npm install
-Set up environment variables:
+- Navigate to the project directory:
+  cd invoice-management-api
+- Install dependencies:
+  npm install
+- Set up environment variables:
 Create a .env file in the root directory and add the following environment variables:
 DB_TYPE=postgres
 DB_HOST=localhost
@@ -44,8 +44,8 @@ The following are the available queries and mutations that you can run in the Gr
 
 1. Queries
 
-- invoices: Retrieves a list of all invoices.
-query {
+# invoices: Retrieves a list of all invoices.
+- query {
   invoices {
     id
     description
@@ -57,8 +57,8 @@ query {
     isStorno
   }
 }
-- invoice(number: Int!): Looks up an invoice by its number.
-query {
+# invoice(number: Int!): Looks up an invoice by its number.
+- query {
   invoice(number: 1337) {
     id
     description
@@ -73,8 +73,8 @@ query {
 
 2. Mutations
 
-- createInvoice: Creates invoice
-mutation {
+# createInvoice: Creates invoice
+- mutation {
   createInvoice(input: {
     description: "Test Invoice"
     date: "2024-03-15"
@@ -90,8 +90,8 @@ mutation {
     amount
   }
 }
-- updateInvoice: updates existing invoice
-mutation {
+# updateInvoice: updates existing invoice
+- mutation {
   updateInvoice(id: 5, input: {
     description: "Updated Invoice",
     paymentTerm: "term",
@@ -113,8 +113,8 @@ mutation {
     }
   }
 }
-- markAsPaid(id: Int!): Marks an invoice as paid.
-mutation {
+# markAsPaid(id: Int!): Marks an invoice as paid.
+- mutation {
   markAsPaid(id: 5) {
     id
     description
@@ -126,7 +126,8 @@ mutation {
     isStorno
   }
 }
-- markAsUnpaid(id: Int!): Marks an invoice as unpaid.mutation {
+# markAsUnpaid(id: Int!): Marks an invoice as unpaid.
+- mutation {
   markAsUnpaid(id: 5) {
     id
     description
@@ -138,8 +139,8 @@ mutation {
     isStorno
   }
 }
-- generateStornoInvoice(id: Int!): Generates a storno invoice from an existing standardized invoice.
-mutation {
+# generateStornoInvoice(id: Int!): Generates a storno invoice from an existing standardized invoice.
+- mutation {
   generateStornoInvoice(id: 17) {
     id
     number
