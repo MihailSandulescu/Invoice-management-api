@@ -1,19 +1,19 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Invoice } from './invoice.entity';
-import { ObjectType, Field } from '@nestjs/graphql'; // Import decorators
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@ObjectType() // Decorate with ObjectType
+@ObjectType() 
 @Entity()
 export class Project {
-  @Field() // Decorate with Field
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field() // Decorate with Field
+  @Field()
   @Column()
   name: string;
 
-  @Field(() => [Invoice], { nullable: true }) // Specify the return type as an array of invoices
+  @Field(() => [Invoice], { nullable: true }) 
   @OneToMany(() => Invoice, invoice => invoice.project)
-  invoices: Invoice[]; // Define the type as Invoice[]
+  invoices: Invoice[]; 
 }

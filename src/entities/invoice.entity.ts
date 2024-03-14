@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Generated } from 'typeorm';
 import { Project } from './project.entity';
 import { Customer } from './customer.entity';
-import { ObjectType, Field } from '@nestjs/graphql'; // Import decorators
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@ObjectType() // Decorate with ObjectType
+@ObjectType()
 @Entity()
 export class Invoice {
-  @Field() // Decorate each field with Field
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -44,12 +44,12 @@ export class Invoice {
 
   // Many invoices can be associated with one customer
   @ManyToOne(() => Customer, customer => customer.invoices)
-  @Field(() => Customer, { nullable: true }) // Specify the return type for customer field
+  @Field(() => Customer, { nullable: true })
   customer: Customer;
 
   // Many invoices can be associated with one project
   @ManyToOne(() => Project, project => project.invoices)
-  @Field(() => Project, { nullable: true }) // Specify the return type for project field
+  @Field(() => Project, { nullable: true }) 
   project: Project;
 
   constructor(data: Partial<Invoice> = {}) {

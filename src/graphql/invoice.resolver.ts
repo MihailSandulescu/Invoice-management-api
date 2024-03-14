@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Invoice } from '../entities/invoice.entity';
 import { InvoiceService } from '../services/invoice.service';
-import { InvoiceInput } from './invoice.input'; // Import the InvoiceInput type
+import { InvoiceInput } from './invoice.input'; 
 
 @Resolver(() => Invoice)
 export class InvoiceResolver {
@@ -12,7 +12,7 @@ export class InvoiceResolver {
     return this.invoiceService.findAll();
   }
 
-  @Mutation(() => Invoice) // Specify the return type as Invoice
+  @Mutation(() => Invoice) 
   async createInvoice(@Args('input') input: InvoiceInput): Promise<Invoice> {
     return this.invoiceService.create(input);
   }
